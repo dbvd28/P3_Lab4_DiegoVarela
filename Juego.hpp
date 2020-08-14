@@ -68,7 +68,7 @@ public:
         } //termina for de la baraja
         //shuffle de la baraja
         int size = baraja.size();
-        for (int i = 0; i < 500; i++)
+        for (int i = 0; i < 1000; i++)
         {
             int j = rand() % (size);
             int k = rand() % (size);
@@ -171,15 +171,6 @@ public:
                     }
                 }
             } //fin manejo de bots
-              //shuffle de la baraja
-            int size = baraja.size();
-            for (int i = 0; i < 500; i++)
-            {
-                int j = rand() % (size);
-                int k = rand() % (size);
-                swap(baraja[k], baraja[j]);
-            } // Fin For
-            //termina shuffle
             //Mostrar cartas al usuario
             cout << jugadores[0]->nombre << ":";
             for (int i = 0; i < jugadores[0]->mano.size(); i++)
@@ -192,27 +183,22 @@ public:
                  << "2) No" << endl;
             cin >> opcion;
         }
-        int mayor = 0;
+        int mayor = 1;
+
         for (int i = 0; i < jugadores.size(); i++)
         {
-            if (jugadores[i]->puntuacion > jugadores[i + 1]->puntuacion && jugadores[i]->puntuacion <= 31)
-            {
-                mayor = jugadores[i]->puntuacion;
-            }
-            else if (jugadores[i + 1]->puntuacion > jugadores[i]->puntuacion && jugadores[i + 1]->puntuacion <= 31)
-            {
-                mayor = jugadores[i + 1]->puntuacion;
-            }
-        }
-        for (int i = 0; i < jugadores.size(); i++)
-        {
-            if (jugadores[i]->puntuacion == mayor)
+            if (jugadores[i]->puntuacion == 31)
             {
                 cout << "1." << jugadores[i]->nombre << ":" << jugadores[i]->puntuacion << endl;
             }
-            else
+            else if (jugadores[i]->puntuacion >= 31)
             {
                 cout << "Perdedor" << jugadores[i]->nombre << ":" << jugadores[i]->puntuacion << endl;
+            }
+            else if (jugadores[i]->puntuacion <= 31)
+            {
+                cout <<mayor<<". "<<jugadores[i]->nombre<<":" << jugadores[i]->puntuacion << endl;
+                mayor++;
             }
         }
     }
