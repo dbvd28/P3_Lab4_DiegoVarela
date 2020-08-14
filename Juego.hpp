@@ -37,7 +37,7 @@ public:
                 baraja.push_back("A|-#");
                 baraja.push_back("A|<>");
             }
-            else if (i > 1&&i<=10)
+            else if (i > 1 && i <= 10)
             {
                 baraja.push_back(to_string(i) + "|O?");
                 baraja.push_back(to_string(i) + "|<3");
@@ -132,13 +132,14 @@ public:
                 }
             }
         }
+        cout << jugadores[0]->nombre << ":";
         for (int i = 0; i < jugadores[0]->mano.size(); i++)
         {
             cout << jugadores[0]->mano[i] << ",";
         }
-        cout<<endl;
+        cout << endl;
         cout << "Quiere agarrar una carta" << endl
-             << "1) Si"<<endl
+             << "1) Si" << endl
              << "2) No" << endl;
         cin >> opcion;
         while (opcion == 1)
@@ -180,11 +181,12 @@ public:
             } // Fin For
             //termina shuffle
             //Mostrar cartas al usuario
+            cout << jugadores[0]->nombre << ":";
             for (int i = 0; i < jugadores[0]->mano.size(); i++)
             {
                 cout << jugadores[0]->mano[i] << ",";
             }
-            cout<<endl;
+            cout << endl;
             cout << "Quiere agarrar una carta" << endl
                  << "1) Si" << endl
                  << "2) No" << endl;
