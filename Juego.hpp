@@ -108,7 +108,7 @@ public:
                 }
                 else
                 {
-                    string punt = jugadores[i]->mano[j].substr(0, cont++);
+                    string punt = jugadores[i]->mano[j].substr(0, cont);
                     if (punt == "A")
                     {
                         jugadores[i]->puntuacion == 1;
