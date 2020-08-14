@@ -111,23 +111,23 @@ public:
                     string punt = jugadores[i]->mano[j].substr(0, cont1);
                     if (punt == "A")
                     {
-                        jugadores[i]->puntuacion == 1;
+                        jugadores[i]->puntuacion =1;
                     }
                     else if (punt == "J")
                     {
-                        jugadores[i]->puntuacion == 11;
+                        jugadores[i]->puntuacion = 11;
                     }
                     else if (punt == "Q")
                     {
-                        jugadores[i]->puntuacion == 12;
+                        jugadores[i]->puntuacion =12;
                     }
                     else if (punt == "K")
                     {
-                        jugadores[i]->puntuacion == 13;
+                        jugadores[i]->puntuacion = 13;
                     }
                     else if (punt == "2" || punt == "3" || punt == "4" || punt == "5" || punt == "6" || punt == "7" || punt == "8" || punt == "9" || punt == "10")
                     {
-                        jugadores[i]->puntuacion == stoi(punt);
+                        jugadores[i]->puntuacion = stoi(punt);
                     }
                 }
             }
