@@ -37,12 +37,12 @@ public:
                 baraja.push_back("A|-#");
                 baraja.push_back("A|<>");
             }
-            else if (i > 1)
+            else if (i > 1&&i<=10)
             {
-                baraja.push_back(i + "|O?");
-                baraja.push_back(i + "|<3");
-                baraja.push_back(i + "|-#?");
-                baraja.push_back(i + "|<>");
+                baraja.push_back(to_string(i) + "|O?");
+                baraja.push_back(to_string(i) + "|<3");
+                baraja.push_back(to_string(i) + "|-#?");
+                baraja.push_back(to_string(i) + "|<>");
             }
             else if (i == 11)
             {
@@ -67,9 +67,13 @@ public:
             }
         } //termina for de la baraja
         //shuffle de la baraja
-        unsigned seed = chrono::system_clock::now().time_since_epoch().count();
-        default_random_engine e(seed);
-        shuffle(baraja.begin(), baraja.end(), e);
+        int size = baraja.size();
+        for (int i = 0; i < 500; i++)
+        {
+            int j = rand() % (size);
+            int k = rand() % (size);
+            swap(baraja[k], baraja[j]);
+        } // Fin For
         //termina shuffle
         int num = 0;
         static int cartasasignadas = 0;
@@ -93,7 +97,6 @@ public:
         int cont_cartasagarradas = 0;
         int opcion;
         int cont1 = 0;
-        cout << jugadores[0]->mano[0] << jugadores[0]->mano[1] << jugadores[0]->mano[2];
         //sacar la puntuacion de cada jugador
         for (int i = 0; i < jugadores.size(); i++)
         {
@@ -129,8 +132,13 @@ public:
                 }
             }
         }
+        for (int i = 0; i < jugadores[0]->mano.size(); i++)
+        {
+            cout << jugadores[0]->mano[i] << ",";
+        }
+        cout<<endl;
         cout << "Quiere agarrar una carta" << endl
-             << "1) Si"
+             << "1) Si"<<endl
              << "2) No" << endl;
         cin >> opcion;
         while (opcion == 1)
@@ -154,7 +162,7 @@ public:
                 }
                 else if (jugadores[i]->puntuacion > 25 && jugadores[i]->puntuacion <= 31)
                 {
-                    int numran = rand() %100;
+                    int numran = rand() % 100;
                     if (numran > 95)
                     {
                         jugadores[i]->mano.push_back(baraja.back());
@@ -163,17 +171,22 @@ public:
                 }
             } //fin manejo de bots
               //shuffle de la baraja
-            unsigned seed = chrono::system_clock::now().time_since_epoch().count();
-            default_random_engine e(seed);
-            shuffle(baraja.begin(), baraja.end(), e);
+            int size = baraja.size();
+            for (int i = 0; i < 500; i++)
+            {
+                int j = rand() % (size);
+                int k = rand() % (size);
+                swap(baraja[k], baraja[j]);
+            } // Fin For
             //termina shuffle
             //Mostrar cartas al usuario
-            for (int i = 0; jugadores[0]->mano.size(); i++)
+            for (int i = 0; i < jugadores[0]->mano.size(); i++)
             {
                 cout << jugadores[0]->mano[i] << ",";
             }
+            cout<<endl;
             cout << "Quiere agarrar una carta" << endl
-                 << "1) Si"
+                 << "1) Si" << endl
                  << "2) No" << endl;
             cin >> opcion;
         }
@@ -193,11 +206,11 @@ public:
         {
             if (jugadores[i]->puntuacion == mayor)
             {
-                cout << "1." << jugadores[i]->nombre;
+                cout << "1." << jugadores[i]->nombre << ":" << jugadores[i]->puntuacion << endl;
             }
             else
             {
-                cout << "Perdedor" << jugadores[i]->nombre;
+                cout << "Perdedor" << jugadores[i]->nombre << ":" << jugadores[i]->puntuacion << endl;
             }
         }
     }

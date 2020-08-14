@@ -8,7 +8,7 @@ int main()
     string nombre;
     cout << "Ingrese su nombre:";
     cin >> nombre;
-    cout << "Ingrese la cantidad";
+    cout << "Ingrese la cantidad: ";
     cin >> cant_jugadores;
     Juego::Jugar(cant_jugadores,nombre);
 }
