@@ -26,7 +26,7 @@ public:
         }
         for (int i = 1; i < num_jugadores; i++)
         {
-            jugadores.push_back(new Jugador("Bot-" + i));
+            jugadores.push_back(new Jugador("Bot-" + to_string(i));
         } //For que crea las cartas a la baraja
         for (int i = 1; i <= 13; i++)
         {
