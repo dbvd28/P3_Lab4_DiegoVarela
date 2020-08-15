@@ -68,8 +68,8 @@ public:
         } //termina for de la baraja
         //shuffle de la baraja
         int size = baraja.size();
-        int num1=rand()%(1000+5000);
-        for (int i = 0; i <num1; i++)
+        int num1 = rand() % (1000 + 5000);
+        for (int i = 0; i < num1; i++)
         {
             int j = rand() % (size);
             int k = rand() % (size);
@@ -104,7 +104,7 @@ public:
             for (int j = 0; j < jugadores[i]->mano.size(); j++)
             {
 
-                cont1=jugadores[i]->mano[j].find("|");
+                cont1 = jugadores[i]->mano[j].find("|");
 
                 string punt = jugadores[i]->mano[j].substr(0, cont1);
                 if (punt == "A")
@@ -168,38 +168,38 @@ public:
                     }
                 }
             } //fin manejo de bots
-            //Mostrar cartas al usuario
-             for (int i = 0; i < jugadores.size(); i++)
-        {
-            jugadores[i]->puntuacion  = 0;
-            for (int j = 0; j < jugadores[i]->mano.size(); j++)
+              //Mostrar cartas al usuario
+            for (int i = 0; i < jugadores.size(); i++)
             {
+                jugadores[i]->puntuacion = 0;
+                for (int j = 0; j < jugadores[i]->mano.size(); j++)
+                {
 
-                cont1=jugadores[i]->mano[j].find("|");
+                    cont1 = jugadores[i]->mano[j].find("|");
 
-                string punt = jugadores[i]->mano[j].substr(0, cont1);
-                if (punt == "A")
-                {
-                    jugadores[i]->puntuacion += 1;
-                }
-                else if (punt == "J")
-                {
-                    jugadores[i]->puntuacion += 11;
-                }
-                else if (punt == "Q")
-                {
-                    jugadores[i]->puntuacion += 12;
-                }
-                else if (punt == "K")
-                {
-                    jugadores[i]->puntuacion += 13;
-                }
-                else if (punt == "2" || punt == "3" || punt == "4" || punt == "5" || punt == "6" || punt == "7" || punt == "8" || punt == "9" || punt == "10")
-                {
-                    jugadores[i]->puntuacion += stoi(punt);
+                    string punt = jugadores[i]->mano[j].substr(0, cont1);
+                    if (punt == "A")
+                    {
+                        jugadores[i]->puntuacion += 1;
+                    }
+                    else if (punt == "J")
+                    {
+                        jugadores[i]->puntuacion += 11;
+                    }
+                    else if (punt == "Q")
+                    {
+                        jugadores[i]->puntuacion += 12;
+                    }
+                    else if (punt == "K")
+                    {
+                        jugadores[i]->puntuacion += 13;
+                    }
+                    else if (punt == "2" || punt == "3" || punt == "4" || punt == "5" || punt == "6" || punt == "7" || punt == "8" || punt == "9" || punt == "10")
+                    {
+                        jugadores[i]->puntuacion += stoi(punt);
+                    }
                 }
             }
-        }
             cout << jugadores[0]->nombre << ":";
             for (int i = 0; i < jugadores[0]->mano.size(); i++)
             {
@@ -211,23 +211,39 @@ public:
                  << "2) No" << endl;
             cin >> opcion;
         }
+        vector<Jugador *> orden;
         int mayor = 1;
-
         for (int i = 0; i < jugadores.size(); i++)
         {
-            if (jugadores[i]->puntuacion == 31)
+            if (jugadores[i]->puntuacion <= 31)
             {
-                cout << "1." << jugadores[i]->nombre << ":" << jugadores[i]->puntuacion << endl;
+                orden.push_back(jugadores[i]);
             }
             else if (jugadores[i]->puntuacion >= 31)
             {
                 cout << "Perdedor. " << jugadores[i]->nombre << ":" << jugadores[i]->puntuacion << endl;
             }
-            else if (jugadores[i]->puntuacion <= 31)
+            else if (jugadores[i]->puntuacion == 31)
             {
-                cout << mayor << ". " << jugadores[i]->nombre << ":" << jugadores[i]->puntuacion << endl;
-                mayor++;
+                cout << "1." << jugadores[i]->nombre << ":" << jugadores[i]->puntuacion << endl;
             }
+        }
+        Jugador *temporal;
+        for (int j = 0; j < orden.size(); j++)
+        {
+            for (int k = j + 1; k < orden.size(); k++)
+            {
+                if (orden[j]->puntuacion < orden[k]->puntuacion)
+                {
+                    temporal = orden[j];
+                    orden[j] = orden[k];
+                    orden[k] = temporal;
+                }
+            }
+        }
+        for (int i = 0; i < orden.size(); i++)
+        {
+            cout << orden[i]->nombre << ":" << orden[i]->puntuacion << endl;
         }
     }
 };
